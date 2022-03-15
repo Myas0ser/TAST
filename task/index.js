@@ -1,0 +1,10 @@
+const express = require('express')
+const runDB = require('./DB/config/connectDB')
+const { userRouter, postRouter, } = require('./router/router')
+const app = express()
+require('dotenv').config()
+const port = process.env.port
+app.use(express.json())
+app.use(userRouter, postRouter)
+runDB()
+app.listen(port, () => console.log(`this server is runnig on port ${port}`))
